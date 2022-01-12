@@ -1,13 +1,21 @@
+"""
+ROCK PAPER AND SCISSORS GAME
+By:
+    Nov Segal                   209550847
+    Odeya Sadoun                212380406
+    Tamar Gavrieli-Ben Eliyahu  322533977
+    Yael Adler                  322877903
+"""
 
+import cv2
 import time
 import os
 import HandTrackingModule as htm
 import random
-import cv2
 
 
 wCam, hCam = 640, 480
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 
@@ -39,7 +47,6 @@ hPaper, wPaper, cPaper = PRSImagesList[0].shape
 hRock, wRock, cRock = PRSImagesList[1].shape
 hScissors, wScissors, cScissors = PRSImagesList[2].shape
 hSpace, wSpace = 50, 30
-
 
 
 
@@ -176,7 +183,7 @@ def main(rec=0):
         if num_hands_detected == 2:
             onePaperSignFrameCounter = 0
             twoHandsFrameCounter += 1
-            if twoHandsFrameCounter >= 30:
+            if twoHandsFrameCounter >= 20:
                 time.sleep(1)
                 return
         elif num_hands_detected == 1:
@@ -204,7 +211,11 @@ def main(rec=0):
                         cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
         elif num_hands_detected == 1:
             userChoice = analyseUserChoice(landmarksList)
-            showUserChoice(img, userChoice)
+            if userChoice == 0:
+                cv2.putText(img, "Make your choice!", (wSpace + 30, hSpace - 5),
+                            cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
+            else:
+                showUserChoice(img, userChoice)
         else:
             cv2.putText(img, "Make your choice!", (wSpace + 30, hSpace - 5),
                         cv2.FONT_HERSHEY_PLAIN, 2, (0, 0, 0), 2)
