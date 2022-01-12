@@ -1,11 +1,4 @@
-"""
-ROCK PAPER AND SCISSORS GAME
-By:
-    Nov Segal                   209550847
-    Odeya Sadoun                212380406
-    Tamar Gavrieli-Ben Eliyahu  322533977
-    Yael Adler                  322877903
-"""
+
 
 import cv2
 import time
